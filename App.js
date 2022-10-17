@@ -17,7 +17,7 @@ export default function App() {
   /* ^Don't mind/edit this one either unless you decide to do the dark theme one, in that case, you will have to change it accordingly*/
 
   /* insert your code here */
-
+ 
   return (
     <View style={styles.container}>
       <TopBar />
