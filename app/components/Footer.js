@@ -1,30 +1,34 @@
-import { StyleSheet, Text, Image, View, StatusBar } from 'react-native';
-import { Icons, Themes } from '../assets/Themes';
+import { StyleSheet, Text, Image, View, PixelRatio, useWindowDimensions } from 'react-native';
+import { Icons, Themes } from '../../assets/Themes';
 
 export default function BottomBar() {
+    const { width, height } = useWindowDimensions();
+    const fontSize = PixelRatio.getFontScale() * height * 0.02
+    const imgHeight = height * 0.05
+    const imgWidth = width * 0.1
     return (
-        <View style={styles.container}>
+        <View style={{ ...styles.container, width: width * 1.1 }}>
             <View style={styles.wrapper}>
             <View style={styles.section}>
                 <Image
-                    style={styles.image}
+                    style={{ ...styles.image, height: imgHeight, width: imgWidth }}    
                     source={Icons.discover.light}
                 />  
-                <Text style={styles.text}>Discover</Text>
+                    <Text style={{ ...styles.text, fontSize }}>Discover</Text>
             </View>
             <View style={styles.section}>
                 <Image
-                    style={styles.image}
+                    style={{ ...styles.image, height: imgHeight, width: imgWidth }}
                     source={Icons.heart.light}
                 />
-                <Text style={styles.text}>Matches</Text>
+                <Text style={{ ...styles.text, fontSize }}>Matches</Text>
             </View>
             <View style={styles.section}>
                 <Image
-                    style={styles.image}
+                    style={{ ...styles.image, height: imgHeight, width: imgWidth }}
                     source={Icons.messages.light}
                 />
-                <Text style={styles.text}>DMs</Text>
+                <Text style={{ ...styles.text, fontSize }}>DMs</Text>
                 </View>
             </View>
         </View>
@@ -36,7 +40,6 @@ const styles = StyleSheet.create({
         flex: 1.25,
         flexDirection: 'row',
         height: '10%',
-        width: '100%',
         backgroundColor: Themes.light.navigation,
         justifyContent: 'center',
         alignItems: 'center',
@@ -44,23 +47,21 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         flexDirection: 'row',
-        maxWidth: '80%',
+        maxWidth: '70%',
+        maxHeight: '30%',
         justifyContent: 'space-between',
     },
     section: {
-        flex: 1,
+        flex: 2,
+        maxHeight: '50%',
         alignItems: 'center',
         justifyContent: 'flex-end'
     },
     image: {
-        width: 40,
-        height: 40,
-        overflow: 'visible',
-        marginBottom: 5,
+        resizeMode: 'contain',
     },
     text: {
         color: Themes.light.textSecondary,
-        fontSize: 20,
         fontFamily: 'Sydney',
     }
   });
